@@ -1,46 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-android:padding="20dp"
-xmlns:android="http://schemas.android.com/apk/res/android">
-<ImageView
-android:layout_width="100dp"
-android:layout_height="100dp"
-android:src="@drawable/logoamikom"
-android:layout_gravity="center"
-android:layout_marginBottom="20dp"
-android:layout_marginTop="30dp"></ImageView>
+package com.example.a3095_login
 
-<TextView
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="@string/app_name"
-android:textSize="30dp"
-android:layout_gravity="center"></TextView>
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.example.login.R
 
-<TextView
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Username"></TextView>
+class Login : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.login)
 
-<EditText
-android:layout_width="match_parent"
-android:layout_height="wrap_content"></EditText>
+        val et_Username: EditText = findViewById (R.id.et_Username)
+        val et_Pass: EditText = findViewById (R.id.et_Pass)
+        val btn_login: Button = findViewById (R.id.btn_login)
+        val btn_daftar: Button = findViewById(R.id.btn_daftar)
 
-<TextView
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="Password"></TextView>
+        btn_login.setOnClickListener {
+            val username = et_Username.text.toString()
 
-<EditText
-android:layout_width="match_parent"
-android:layout_height="wrap_content"></EditText>
+            val pindah : Intent= Intent(this, Dashboard:: class.java)
 
-<Button
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:text="@string/app_login"></Button>
+            pindah.putExtra("nama", username)
 
+            startActivity(pindah)
+        }
 
-</LinearLayout>
+        btn_daftar.setOnClickListener {
+            val intent = Intent(this, Register::class.java)
+            startActivity(intent)
+        }
+    }
+}
